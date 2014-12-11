@@ -45,17 +45,16 @@ function registerPushwooshAndroid() {
 	pushNotification.onDeviceReady({ projectid: "748404133765", appid : "0C6E2-A041D" });
 
 	//register for push notifications
-	pushNotification.registerDevice(
-		function(token)
-		
-		function(status)
-		{
-			alert("failed to register: " +  status);
-		    console.warn(JSON.stringify(['failed to register ', status]));
-		}
-	);
+ pushNotification.registerDevice(
+        function(status) {
+            var pushToken = status;
+            console.warn('push token: ' + pushToken);
+        },
+        function(status) {
+            console.warn(JSON.stringify(['failed to register ', status]));
+        }
+    );
 }
-
 function onPushwooshAndroidInitialized(pushToken)
 {
 	//output the token to the console
